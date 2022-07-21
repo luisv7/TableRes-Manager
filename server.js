@@ -21,6 +21,7 @@ app.set('view engine', 'ejs');
 
 ///// ROUTES /////
 app.get('/', (req, res) => {
+    res.redirect("/guests");
 });
 
 app.use('/guests', Guest);
