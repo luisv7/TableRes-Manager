@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
 });
 
-app.get('/guests', Guest)
+app.use('/guests', Guest);
 
 const port = process.env.PORT;
 app.listen(port, () => {
