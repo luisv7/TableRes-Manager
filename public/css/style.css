@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#body{
+    margin-top: .7rem;
+}
+main{
+    margin: 0.2rem 1.2rem;
+}
+#main-nav{
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgb(150,206,180);
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1.2rem;
+}
+#add-booking-btn{
+    background-color: rgba(255,204,92, 1);
+    border-style: none;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#card{
+    border-radius: 0.5rem;
+    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, .3));
+}
+#btn-edit{
+    color: black;
+    background-color: rgba(68,190,199, 0.8);
+}
+#btn-del{
+    color: black;
+    background-color: rgba(250,60,76, 0.8);
+}
