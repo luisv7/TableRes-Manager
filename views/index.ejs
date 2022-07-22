@@ -1,0 +1,28 @@
+<%- include('partials/head'); %>
+<%- include('partials/header'); %>
+
+<!-- DATE FORMATTER -->
+<% const monthArr = [
+"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+%>
+<% guests.forEach((guest, index) => { %>
+    <div class="card" id="card">
+        <div class="card-content">
+            <h2>Name: <%= guest.name %></h2>
+            <h2>Phone#: <%= guest.phone %></h2>
+            <h2>Time: <%= guest.time.hour %>:<%= guest.time.minute %> <%= guest.time.meridiem %></h2>
+            <h2>Date: <%= monthArr[guest.date.month] %> <%= guest.date.day %>, <%= guest.date.year %></h2>
+            <h2>Table: <%= guest.table %></h2>
+            <h2># of Guests: <%= guest.guests %></h2>
+            <h2>Email: <%= guest.email %></h2>
+            <h2>Comments: <%= guest.comments %></h2>
+        </div>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item" id="btn-edit">Edit</a>
+            <a href="#" class="card-footer-item" id="btn-del">Delete</a>
+        </footer>
+    </div>
+<% }); %>
+
+<%- include('partials/footer'); %>
