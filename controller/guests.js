@@ -44,10 +44,10 @@ router.get('/', (req, res) => {
 
 /// SEARCH BY NAME
 router.get('/search', (req, res) => {
-    let searchName = req._parsedOriginalUrl.query.slice(5);
-    searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
+    let searchedName = req.query.name;
+    searchedName = searchedName.charAt(0).toUpperCase() + searchedName.slice(1);
     
-    Guest.find({ 'name.first': searchName }, (err, guests) => {
+    Guest.find({ 'name.first': searchedName }, (err, guests) => {
         guests.forEach((el) => {
             el.time = moment(el.time, 'HH:mm').format('h:mm A');
             el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
@@ -56,31 +56,38 @@ router.get('/search', (req, res) => {
     });
 })
 
-/// FILTER BY DATE
-router.get('/filter-by-date', (req, res) => {
-    // RETURNS DATE SELECTED ON NAV CALENDAR
-    let filteredDate = filter(req._parsedOriginalUrl.query);
-    Guest.find({ date: filteredDate }, (err, guests) => {
-        guests.forEach((el) => {
-            el.time = moment(el.time, 'HH:mm').format('h:mm A');
-            el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
+/// FILTER BY DATE & TIME
+router.get('/filter-date-and-time', (req, res) => {
+    let filterTime = req.query.time;
+    let filterDate = req.query.date;
+
+    if(filterTime !== '' && filterDate !== ''){
+        Guest.find({ time: filterTime, date: filterDate }, (err, guests) => {
+            guests.forEach((el) => {
+                el.time = moment(el.time, 'HH:mm').format('h:mm A');
+                el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
+            });
+            res.render('index.ejs', { guests, today })
         });
-        res.render('index.ejs', { guests, today })
-    });
+    }else if(filterDate !== ''){
+        Guest.find({ date: filterDate }, (err, guests) => {
+            guests.forEach((el) => {
+                el.time = moment(el.time, 'HH:mm').format('h:mm A');
+                el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
+            });
+            res.render('index.ejs', { guests, today })
+        });
+    }else if(filterTime !== ''){
+        Guest.find({ time: filterTime}, (err, guests) => {
+            guests.forEach((el) => {
+                el.time = moment(el.time, 'HH:mm').format('h:mm A');
+                el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
+            });
+            res.render('index.ejs', { guests, today })
+        });
+    }
 })
 
-/// FILTER BY TIME
-router.get('/filter-by-time', (req, res) => {
-    let filterTime = filter(req._parsedOriginalUrl.query);
-    filterTime = `${filterTime.slice(0,2)}:${filterTime.slice(5,7)}`;
-    Guest.find({ time: filterTime }, (err, guests) => {
-        guests.forEach((el) => {
-            el.time = moment(el.time, 'HH:mm').format('h:mm A');
-            el.date = moment(el.date, 'YYYY-MM-DD').format('MMM Do YYYY');
-        });
-        res.render('index.ejs', { guests, today })
-    });
-})
 // FILTER VIEW ALL
 router.get('/view-all', (req, res) => {
     Guest.find({}, (err, guests) => {
