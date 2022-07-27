@@ -1,28 +1,66 @@
-<%- include('partials/head'); %>
 <%- include('partials/header'); %>
+<%- include('partials/filter'); %>
 
-<!-- DATE FORMATTER -->
-<% const monthArr = [
-"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-%>
-<% guests.forEach((guest, index) => { %>
-    <div class="card" id="card">
-        <div class="card-content">
-            <h2>Name: <%= guest.name %></h2>
-            <h2>Phone#: <%= guest.phone %></h2>
-            <h2>Time: <%= guest.time.hour %>:<%= guest.time.minute %> <%= guest.time.meridiem %></h2>
-            <h2>Date: <%= monthArr[guest.date.month] %> <%= guest.date.day %>, <%= guest.date.year %></h2>
-            <h2>Table: <%= guest.table %></h2>
-            <h2># of Guests: <%= guest.guests %></h2>
-            <h2>Email: <%= guest.email %></h2>
-            <h2>Comments: <%= guest.comments %></h2>
+<div class="columns is-multiline is-mobile" id="cards-main-container">
+    <% guests.forEach((guest) => { %>
+    <div class="card card-container">
+        <!-- CARD HEADER -->
+        <div class="card-header card-header-container">
+            <div class="card-header-row">
+                <!-- GUEST NAME -->
+                <h2><%= guest.name.first %> <%= guest.name.last %></h2>
+                <div>
+                    <!-- # OF GUEST / TABLE ICONS -->
+                    <a href="/guests/<%= guest._id %>/edit" class="button is-outlined is-link icon-guests-table">
+                        <ion-icon name="people" size="small"></ion-icon><%= guest.guests %></a>
+                    <% if (guest.table !== '') { %>
+                    <a href="/guests/<%= guest._id %>/edit"
+                        class="button is-outlined is-black icon-guests-table"><%= guest.table %></a>
+                    <% } %>
+                </div>
+                <!-- ICON DELETE -->
+                <form action="/guests/<%= guest._id %>?_method=DELETE" method="POST">
+                    <button class="icon-del" type="submit">
+                        <ion-icon class="icon-delete" name="close-circle"></ion-icon>
+                    </button>
+                </form>
+            </div>
         </div>
-        <footer class="card-footer">
-            <a href="#" class="card-footer-item" id="btn-edit">Edit</a>
-            <a href="#" class="card-footer-item" id="btn-del">Delete</a>
+        <!-- CARD BODY -->
+        <div class="card-body">
+            <!-- GUEST BOOKING TIME/DATE -->
+            <div class="card-row">
+                <h2><%= guest.time %></h2>
+                <h2><%= guest.date %></h2>
+            </div>
+            <!-- GUEST PHONE/EMAIL -->
+            <div class="card-row">
+                <div class="card-item">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <a href="tel:<%= guest.phone %>"><%= guest.phone %></a>
+                </div>
+                <% if (guest.email !== '') { %>
+                <div class="card-item">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <a href="mailto:<%= guest.email %>"><%= guest.email %></a>
+                </div>
+                <% } %>
+            </div>
+            <!-- COMMENTS -->
+            <div class="card-row">
+                <% if (guest.comments !== ''){ %>
+                    <p><strong>Comments: </strong><%= guest.comments %></p>
+                <% } %>
+            </div>
+        </div>
+        <!-- CARD FOOTER -->
+        <footer>
+            <form action="/guests/<%= guest._id %>?_method=DELETE" method="POST" class="card-footer">
+                <a class="card-footer-item btn-edit" href="/guests/<%= guest._id %>/edit">Edit</a>
+                <!-- <input class="card-footer-item btn-card-footer" type="submit" value="Delete"> -->
+            </form>
         </footer>
     </div>
-<% }); %>
-
+    <% }); %>
+</div>
 <%- include('partials/footer'); %>

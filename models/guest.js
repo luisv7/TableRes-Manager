@@ -4,20 +4,15 @@ const mongoose = require('mongoose');
 ///// SCHEMA /////
 
 const guestSchema = new mongoose.Schema({
-    name: { type: String, required: true },
+    name: {
+        first: { type: String, required: true},
+        last: { type: String },
+     },
     phone: { type: String, required: true },
-    time: { 
-        hour: { type: Number, max: 12 },
-        minute: { type: Number, max: 59 },
-        meridiem: { type: String }
-    },
-    date: { 
-        month: { type: Number },
-        day: { type: Number },
-        year: { type: Number },
-    },
+    time: { type: String, required: true },
+    date: { type: String, required: true },
     table: { type: String },
-    guests: { type: Number },
+    guests: { type: Number, maxLength: 3, require: true },
     email: { type: String },
     comments: { type: String },
 });

@@ -1,0 +1,86 @@
+<%- include('partials/header') %>
+
+<form action="/guests" method="POST" class="form-new-guest">
+    <!-- GUESTS / DATE / TIME -->
+    <div class="field is-horizontal form-row">
+        <!-- GUESTS -->
+        <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label" for="guests">People</label>
+            </div>
+            <div class="control">
+                <input class="input" type="number" name="guests" placeholder="4" id="guest" required>
+            </div>
+        </div>
+        <!-- DATE -->
+
+        <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label" for="date">Date</label>
+            </div>
+            <div class="control">
+                <input class="input" type="date" name="date" id="date" required>
+            </div>
+        </div>
+        <!-- TIME -->
+        <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label is-normal" for="time">Time</label>
+            </div>
+            <div class="control">
+                <input class="input" type="time" name="time" id="time" required>
+            </div>
+        </div>
+    </div>
+    <!-- FIRST NAME -->
+    <div class="field">
+        <label class="label" for="name.first">First Name</label>
+        <div class="control">
+            <input class="input" type="text" name="name.first" placeholder="First Name" required>
+        </div>
+    </div>
+    <!-- LAST NAME -->
+    <div class="field">
+        <label class="label" for="name.last">Last Name</label>
+        <div class="control">
+            <input class="input" type="text" name="name.last" placeholder="Last Name">
+        </div>
+    </div>
+    <!-- PHONE # -->
+    <div class="field">
+        <label class="label" for="phone">Phone</label>
+        <div class="control">
+            <input class="input" type="tel" name="phone" placeholder="123-456-7891" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                id="phone" required>
+        </div>
+    </div>
+    <!-- EMAIL -->
+    <div class="field">
+        <label class="label" for="email">Email</label>
+        <div class="control">
+            <input class="input" type="email" name="email" placeholder="example@email.com" id="email">
+        </div>
+    </div>
+    <!-- Table Number -->
+    <div class="field">
+        <label class="label" for="table">Table</label>
+        <div class="control">
+            <input class="input" type="text" name="table" placeholder="T1" id="table">
+        </div>
+    </div>
+    <!-- COMMENTS -->
+    <div class="field">
+        <label class="label" for="comments">Comments</label>
+        <div class="control">
+            <textarea class="textarea" name="comments" id="comments" cols="25" rows="4"
+                placeholder="Birthday Party 🥳"></textarea>
+        </div>
+    </div>
+    <!-- SUBMIT BUTTON -->
+    <div class="control is-grouped">
+        <input class="button is-success" type="submit" value="Create Booking">
+        <a href="/guests" class="button is-danger">Cancel</a>
+    </div>
+</form>
+
+<%- include('partials/footer') %>
