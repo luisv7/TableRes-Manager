@@ -2,6 +2,8 @@
 const moment = require('moment');
 const Guest = require('../models/guest');
 const GuestData = require('../models/guest-seed');
+const GuestBook = require('../models/guest-book');
+
 
 ///// INITIALIZATION /////
 const router = require('express').Router();
@@ -101,7 +103,9 @@ router.get('/view-all', (req, res) => {
 
 /// NEW
 router.get('/new', (req,res) => {
-    res.render('new.ejs', { today });
+    let guest = req.query;
+
+    res.render('new.ejs', { guest, today });
 });
 
 /// DELETE
@@ -114,7 +118,7 @@ router.delete('/:id', (req, res) => {
 /// UPDATE - PUT
 router.put('/:id', (req, res) => {
     Guest.findByIdAndUpdate(req.params.id, req.body, () => {
-        res.redirect('/guests');
+        res.redirect(`/guests/filter-date-and-time?date=${req.body.date}&time=${req.body.time}`);
     });
 });
 
@@ -125,6 +129,7 @@ router.post('/', (req, res) => {
     req.body['name.first'] = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 
     Guest.create(req.body);
+    GuestBook.create(req.body);
     res.redirect('/guests');
 });
 
@@ -137,5 +142,20 @@ router.get('/:id/edit', (req, res) => {
 });
 
 /// SHOW
+router.get('/profile', (req, res) => {
+})
+
+router.get('/guest-book', (req, res) => {
+    GuestBook.find({}, (err, guestBook) => {
+        res.render('guest-book.ejs', { guestBook, today });
+    })
+})
+
+router.get('/guest-book/phone-search', (req, res) => {
+
+    GuestBook.find( { phone: req.query.phone }, (err, guestBook) => {
+        res.render('guest-book.ejs', { guestBook, today });
+    })
+});
 
 module.exports = router;

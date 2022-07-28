@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/grid.css">
     <title>TableRes Manager</title>
 </head>
 <body>
@@ -15,7 +14,11 @@
         <ul>
             <li><a class="title is-4" id="logo" href="/guests">TableRes</a></li>
             <li><a href="/guests" class="nav-date"><%= today %></a></li>
-            <li><a class="button yellow-btn" href="/guests/new">Add Booking</a></li>
+            <div class="brand-container">
+                <li><a class="navbar-item nav-link" id="nav-link-guest-book" href="/guests/guest-book">Guest Book</a></li>
+                <li><a class="navbar-item nav-link" id="nav-link-profile" href="/guests/profile">Profile</a></li>
+                <li><a class="button yellow-btn" href="/guests/new">Add Booking</a></li>
+            </div>
         </ul>
     </nav>
 </header>

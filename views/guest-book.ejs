@@ -1,0 +1,28 @@
+<%- include('partials/header'); %>
+<%- include('partials/filter-guest-book'); %>
+
+<table class="table is-striped is-hoverable">
+    <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+<% guestBook.forEach((guest) => { %>
+        <tr>
+            <form action="/guests/new" method="GET">
+                <td><input type="text" name="name.first" value="<%= guest.name.first %>" hidden><%= guest.name.first %></td>
+                <td><input type="text" name="name.last" value="<%= guest.name.last %>" hidden><%= guest.name.last %></td>
+                <td><input type="text" name="phone" value="<%= guest.phone %>" hidden><%= guest.phone %></td>
+                <td><input type="text" name="email" value="<%= guest.email %>" hidden><%= guest.email %></td>
+                <td>
+                    <input class="button is-outlined is-black is-small" type="submit" value="Add Booking">
+                </td>
+            </form>
+        </tr>
+<% }); %>
+    </tbody>
+</table>

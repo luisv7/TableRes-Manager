@@ -19,10 +19,11 @@
 
 # Getting Started
 
-# Future Enhancements
+# New Features
 - Filter by Date
 - Filter by Time
 - Search by Name
+- Search by Phone Number
 - Status Update
 - Company Profile
 - Add guests as contacts for future reservations / Promotion.

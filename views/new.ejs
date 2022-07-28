@@ -13,7 +13,6 @@
             </div>
         </div>
         <!-- DATE -->
-
         <div class="field-body">
             <div class="field-label is-normal">
                 <label class="label" for="date">Date</label>
@@ -36,29 +35,28 @@
     <div class="field">
         <label class="label" for="name.first">First Name</label>
         <div class="control">
-            <input class="input" type="text" name="name.first" placeholder="First Name" required>
+            <input class="input" type="text" name="name.first" placeholder="First Name" value="<%= guest['name.first'] %>" required>
         </div>
     </div>
     <!-- LAST NAME -->
     <div class="field">
         <label class="label" for="name.last">Last Name</label>
         <div class="control">
-            <input class="input" type="text" name="name.last" placeholder="Last Name">
+            <input class="input" type="text" name="name.last" placeholder="Last Name" value="<%= guest['name.last'] %>">
         </div>
     </div>
     <!-- PHONE # -->
     <div class="field">
         <label class="label" for="phone">Phone</label>
         <div class="control">
-            <input class="input" type="tel" name="phone" placeholder="123-456-7891" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                id="phone" required>
+            <input class="input" type="tel" name="phone" placeholder="123-456-7891" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" value="<%= guest.phone %>" required>
         </div>
     </div>
     <!-- EMAIL -->
     <div class="field">
         <label class="label" for="email">Email</label>
         <div class="control">
-            <input class="input" type="email" name="email" placeholder="example@email.com" id="email">
+            <input class="input" type="email" name="email" placeholder="example@email.com" id="email" value="<%= guest.email %>">
         </div>
     </div>
     <!-- Table Number -->
