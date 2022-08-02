@@ -3,15 +3,11 @@ const moment = require('moment');
 const Guest = require('../models/guest');
 const GuestData = require('../models/guest-seed');
 const GuestBook = require('../models/guest-book');
+const guestBook = require('../models/guest-book');
 
 
 ///// INITIALIZATION /////
 const router = require('express').Router();
-
-/////FUNCTIONS ///// 
-function filter(selectedDate){
-    return selectedDate.slice(5,15);
-}
 
 router.get('/seed', async (req, res) => {
     try{
@@ -104,7 +100,6 @@ router.get('/view-all', (req, res) => {
 /// NEW
 router.get('/new', (req,res) => {
     let guest = req.query;
-
     res.render('new.ejs', { guest, today });
 });
 
@@ -127,9 +122,13 @@ router.post('/', (req, res) => {
     // CAPITALIZE FIRST NAME
     let firstName = req.body['name.first'];
     req.body['name.first'] = firstName.charAt(0).toUpperCase() + firstName.slice(1);
-
     Guest.create(req.body);
-    GuestBook.create(req.body);
+    GuestBook.find({ phone: req.body.phone }, (err, guest) => {
+        if(guest == ""){
+            GuestBook.create(req.body);
+        }
+    });
+    
     res.redirect('/guests');
 });
 
@@ -141,21 +140,18 @@ router.get('/:id/edit', (req, res) => {
     });
 });
 
-/// SHOW
-router.get('/profile', (req, res) => {
-})
-
+/// GUEST BOOK
 router.get('/guest-book', (req, res) => {
     GuestBook.find({}, (err, guestBook) => {
         res.render('guest-book.ejs', { guestBook, today });
     })
 })
-
-router.get('/guest-book/phone-search', (req, res) => {
-
-    GuestBook.find( { phone: req.query.phone }, (err, guestBook) => {
-        res.render('guest-book.ejs', { guestBook, today });
+/// GUEST BOOK DELETE
+router.delete('/guest-book/:id', (req, res) => {
+    GuestBook.findByIdAndDelete( req.params.id, req.body, () => {
+        res.redirect('/guests/guest-book')
     })
-});
+})
+
 
 module.exports = router;
