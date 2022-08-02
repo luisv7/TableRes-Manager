@@ -112,15 +112,30 @@ ul{
 }
 
 /***** MAIN ******/
+
+/***** NEW GUEST  */
+.field-body{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
 .form-new-guest{
+    display: flex;
+    flex-direction: column;
+    width: 580px;
     padding: 1rem;
+    margin: 0 auto;
+}
+.field-label{
+    flex-grow: 0;
 }
 
 .form-row{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.7rem;
+    /* gap: 0.7rem; */
 }
 
 
@@ -215,3 +230,9 @@ ion-icon{
     font-weight: 700;
 }
 
+/* GUEST BOOK */
+
+.table{
+min-width: 600px;
+margin: 0 auto;
+}
