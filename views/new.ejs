@@ -3,15 +3,6 @@
 <form action="/guests" method="POST" class="form-new-guest">
     <!-- GUESTS / DATE / TIME -->
     <div class="field is-horizontal form-row">
-        <!-- GUESTS -->
-        <div class="field-body">
-            <div class="field-label is-normal">
-                <label class="label" for="guests">People</label>
-            </div>
-            <div class="control">
-                <input class="input" type="number" name="guests" placeholder="4" id="guest" required>
-            </div>
-        </div>
         <!-- DATE -->
         <div class="field-body">
             <div class="field-label is-normal">
@@ -28,6 +19,15 @@
             </div>
             <div class="control">
                 <input class="input" type="time" name="time" id="time" required>
+            </div>
+        </div>
+        <!-- GUESTS -->
+        <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label" for="guests">People</label>
+            </div>
+            <div class="control">
+                <input class="input" type="number" name="guests" placeholder="4" id="guest" required>
             </div>
         </div>
     </div>
