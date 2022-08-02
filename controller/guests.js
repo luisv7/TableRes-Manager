@@ -3,8 +3,6 @@ const moment = require('moment');
 const Guest = require('../models/guest');
 const GuestData = require('../models/guest-seed');
 const GuestBook = require('../models/guest-book');
-const guestBook = require('../models/guest-book');
-
 
 ///// INITIALIZATION /////
 const router = require('express').Router();
