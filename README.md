@@ -19,7 +19,14 @@
 
 # Getting Started
 
-# Future Enhancements
-- Add guests as contacts for future reservations.
+# New Features
+- Filter by Date
+- Filter by Time
+- Search by Name
+- Search by Phone Number
+- Status Update
+- Company Profile
+- Add guests as contacts for future reservations / Promotion.
 - Guests can create an account.
 - Guest can do there own booking once logged in.
+- Grid View / List View

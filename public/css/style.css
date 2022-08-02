@@ -1,0 +1,238 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-date{
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+}
+.nav-date:hover{
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+}
+h2{
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+/***** BUTTONS ******/
+.yellow-btn{
+    background-color: rgb(249, 217, 35);
+    border-style: none;
+    color: black;
+}
+.yellow-btn:hover{
+    background-color: rgba(249, 217, 35, 0.9);
+    border-style: none;
+    color: black;
+}
+.blue-btn{
+    background-color: rgb(3, 119, 237);
+    border-style: none;
+    color: white;
+}
+.blue-btn:hover{
+    background-color: rgba(3, 119, 237, 0.8);
+    border-style: none;
+    color: white;
+}
+.black-btn{
+    background-color: rgb(0, 0, 0);
+    border-style: none;
+    color: white;
+}
+.black-btn:hover{
+    background-color: rgb(0, 0, 0, 0.8);
+    border-style: none;
+    color: white;
+}
+.btn-card-footer{
+    background-color: white;
+    border-style: none;
+    color: rgb(24, 116, 152);
+    font-size: 1rem;
+}
+.btn-card-footer:hover{
+    background-color: white;
+    border-style: none;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+}
+
+/***** NAVIGATION ******/
+nav{
+    padding: .7rem;
+    background-color: rgb(0, 56, 101);
+}
+#logo{
+    color: white;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1.2rem;
+}
+.brand-container{
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+}
+.nav-link{
+    color: white;
+    font-size: 1rem;
+}
+#nav-link-guest-book:hover, #nav-link-profile:hover{
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+/***** FILTER OPTIONS ******/
+
+#all-filtered-options{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    background-color: rgba(0, 56, 101,0.6);
+}
+.filter-option{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    align-content: center;
+}
+
+/***** MAIN ******/
+
+/***** NEW GUEST  */
+.field-body{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+.form-new-guest{
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    padding: 1rem;
+    margin: 0 auto;
+}
+.field-label{
+    flex-grow: 0;
+}
+
+.form-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 0.7rem; */
+}
+
+
+/*** CARD ***/
+
+/*** CONTAINER ***/
+#cards-main-container{
+    display: flex;
+    margin: 0 auto;
+    padding: 0 .7rem;
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 600px;
+    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, .3));
+    padding: 0;
+    margin: 0.3rem auto;
+}
+
+/*** CARD HEADER ***/
+.card-header-container{
+    display: flex;
+    flex-direction: column;
+}
+.card-header-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background-color: rgb(245, 245, 247);
+}
+.icon-guests-table{
+    font-size: .90rem;
+    font-weight: 800;
+}
+
+.icon-del{
+    cursor: pointer;
+    background-color: rgb(245, 245, 247);
+    border: none;
+    color: rgb(235, 83, 83);
+}
+
+/*** CARD BODY ***/
+.card-body{
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    padding: 1rem;
+}
+.card-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+.card-item{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+ion-icon{
+    font-size: 24px;
+}
+.icon-delete{
+    font-size: 27px;
+}
+
+/*** CARD FOOTER ***/
+.btn-edit{
+    background-color: rgb(24, 116, 152);
+    color: white;
+}
+.btn-edit:hover{
+    background-color: rgba(24, 116, 152, 0.95);
+    color: white;
+}
+.btn-add-guest{
+    background-color: rgb(54, 174, 124);
+    color: white;
+}
+
+.status{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    width: auto;
+    height: 36px;
+    font-weight: 700;
+}
+
+/* GUEST BOOK */
+
+.table{
+min-width: 600px;
+margin: 0 auto;
+}

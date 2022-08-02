@@ -1,0 +1,102 @@
+<%- include('partials/header'); %>
+<%- include('partials/filter'); %>
+<div class="columns is-multiline is-mobile" id="cards-main-container">
+    <% guests.forEach((guest) => { %>
+    <div class="card card-container">
+        <!-- CARD HEADER -->
+        <div class="card-header card-header-container">
+            <div class="card-header-row">
+                <!-- GUEST NAME -->
+                <h2><%= guest.name.first %> <%= guest.name.last %></h2>
+                <!-- # OF GUEST / TABLE ICONS -->
+                <div>
+                    <a href="/guests/<%= guest._id %>/edit" class="button is-outlined is-link icon-guests-table">
+                        <ion-icon name="people" size="small"></ion-icon><%= guest.guests %></a>
+                    <% if (guest.table !== '') { %>
+                    <a href="/guests/<%= guest._id %>/edit"
+                        class="button is-outlined is-black icon-guests-table"><%= guest.table %></a>
+                    <% } %>
+                    <!-- DROPDOWN STATUS UPDATE
+                    <div class="dropdown">
+                        <div class="dropdown-trigger">
+                          <button class="button is-outlined status" aria-haspopup="true" aria-controls="dropdown-menu3">
+                            <span>Status</span>
+                            <span class="icon is-small">
+                                <ion-icon name="caret-down-outline"></ion-icon>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                          <div class="dropdown-content">
+                            <a href="#" class="dropdown-item">
+                              Checked In
+                            </a>
+                            <a href="#" class="dropdown-item">
+                              Seated
+                            </a>
+                          </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- ICON DELETE -->
+                <form action="/guests/<%= guest._id %>?_method=DELETE" method="POST">
+                    <button class="icon-del" type="submit">
+                        <ion-icon class="icon-delete" name="close-circle"></ion-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- CARD BODY -->
+        <div class="card-body">
+            <!-- GUEST BOOKING TIME/DATE -->
+            <div class="card-row">
+                <h2><%= guest.time %></h2>
+                <h2><%= guest.date %></h2>
+            </div>
+            <!-- GUEST PHONE/EMAIL -->
+            <div class="card-row">
+                <div class="card-item">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <a href="tel:<%= guest.phone %>"><%= guest.phone %></a>
+                </div>
+                <% if (guest.email !== '') { %>
+                <div class="card-item">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <a href="mailto:<%= guest.email %>"><%= guest.email %></a>
+                </div>
+                <% } %>
+            </div>
+            <!-- COMMENTS -->
+            <div class="card-row">
+                <% if (guest.comments !== ''){ %>
+                    <p><strong>Comments: </strong><%= guest.comments %></p>
+                <% } %>
+            </div>
+        </div>
+        <!-- CARD FOOTER -->
+        <footer>
+            <form action="/guests/<%= guest._id %>?_method=DELETE" method="POST" class="card-footer">
+                <a class="card-footer-item btn-edit" href="/guests/<%= guest._id %>/edit">Edit</a>
+            </form>
+        </footer>
+    </div>
+    <% }); %>
+</div>
+<%- include('partials/footer'); %>
+<!-- 
+<script>
+        let btn = document.querySelector('.status');
+        let dropdown = document.querySelector('.dropdown');
+        let cardsContainer = document.querySelector('#cards-main-container');
+
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.dir(event);
+
+            if(event.classList.contains('is-active')){
+                event.classList.remove('is-active');
+            }else {
+                event.classList.add('is-active');
+            }
+        });
+</script> -->
