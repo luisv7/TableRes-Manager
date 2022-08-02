@@ -79,10 +79,10 @@
                 email.innerHTML = user.email
                 addBooking.innerHTML = `
                     <form action="/guests/new" method="GET">
-                        <input type="text" name="name.first" value="' + user.name.first + '" hidden>
-                        <input type="text" name="name.last" value="' + user.name.last + '" hidden>
-                        <input type="text" name="phone" value="' + user.phone + '" hidden>
-                        <input type="text" name="email" value="' + user.email + '" hidden>
+                        <input type="text" name="name.first" value="${user.name.first}" hidden>
+                        <input type="text" name="name.last" value="${user.name.last}" hidden>
+                        <input type="text" name="phone" value="${user.phone}" hidden>
+                        <input type="text" name="email" value="${user.email}" hidden>
                         <input class="button is-outlined is-black is-small" type="submit" value="Add Booking">
                     </form>`
                 deleteBtn.innerHTML = `
