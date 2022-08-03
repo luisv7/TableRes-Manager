@@ -1,10 +1,14 @@
 <%- include('partials/header'); %>
+
+<!-- PHONE SEARCH BAR -->
 <div class="is-mobile" id="all-filtered-options">
     <form class="filter-option" action="guest-book/phone-search" method="GET">
         <input id="filter" class="input" type="search" name="phone" placeholder="Phone Number">
         <!-- <input class="button" type="submit" value="Search"> -->
     </form>
 </div>
+
+<!-- TABLE -->
 <table class="table is-striped is-hoverable">
     <thead>
         <tr>
@@ -13,14 +17,14 @@
           <th>Phone Number</th>
           <th>Email</th>
           <th>Add Booking</th>
+          <th>Edit</th>
           <th>Delete</th>
         </tr>
     </thead>
     <tbody>
     <% if (guestBook) { %>
-        <!-- make user available to script tag -->
         <% var users = guestBook %>
-        <!-- use script tag to access ejs data and local storage -->
+        <!-- USE SCRIPT TAG TO ACCESS EJS DATA AND LOCAL STORAGE -->
         <script>
         let userData = <%- JSON.stringify(users) %>
         localStorage.setItem('info', JSON.stringify(userData));
@@ -37,23 +41,34 @@
                     <input class="button is-outlined is-black is-small" type="submit" value="Add Booking">
                 </td>
             </form>
-                <td>
-                    <form action="/guests/guest-book/<%= guest._id %>?_method=DELETE" method="POST">
-                        <input class="button is-outlined is-black is-small" type="submit" value="Delete">
-                    </form>
-                </td>
+            <!-- EDIT BUTTON -->
+            <td>
+                <form action="/guests/guest-book/<%= guest._id %>/edit" method="GET">
+                    <input type="text" name="name.first" value="<%= guest.name.first %>" hidden>
+                    <input type="text" name="name.last" value="<%= guest.name.last %>" hidden>
+                    <input type="text" name="phone" value="<%= guest.phone %>" hidden>
+                    <input type="text" name="email" value="<%= guest.email %>" hidden>
+                    <input class="button is-outlined is-black is-small" type="submit" value="Edit">
+                </form>
+            </td>
+            <!-- DELETE BUTTON -->
+            <td>
+                <form action="/guests/guest-book/<%= guest._id %>?_method=DELETE" method="POST">
+                    <input class="button is-outlined is-black is-small" type="submit" value="Delete">
+                </form>
+            </td>
         </tr>
     <% }); %>
     </tbody>
 </table>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', () => {
         let userData = JSON.parse(localStorage.getItem('info'));
         const filter = document.getElementById('filter')
         filter.addEventListener('input', (e) => {
             let filteredUsers = userData.filter(user => user.phone.includes(e.target.value))
             let table = document.querySelector('table')
-            // table.innerHTML = ''
             table.innerHTML = ` <thead>
                                     <tr>
                                     <th>First Name</th>
@@ -61,22 +76,24 @@
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Add Booking</th>
+                                    <th>Edit</th>
                                     <th>Delete</th>
                                     </tr>
                                  </thead>
                                 <tbody>`
             filteredUsers.forEach((user) => {
-                let row = table.insertRow()
-                let firstName = row.insertCell()
-                let lastName = row.insertCell()
-                let phone = row.insertCell()
-                let email = row.insertCell()
-                let addBooking = row.insertCell()
-                let deleteBtn = row.insertCell()
-                firstName.innerHTML = user.name.first
-                lastName.innerHTML = user.name.last
-                phone.innerHTML = user.phone
-                email.innerHTML = user.email
+                let row = table.insertRow();
+                let firstName = row.insertCell();
+                let lastName = row.insertCell();
+                let phone = row.insertCell();
+                let email = row.insertCell();
+                let addBooking = row.insertCell();
+                let editBtn = row.insertCell();
+                let deleteBtn = row.insertCell();
+                firstName.innerHTML = user.name.first;
+                lastName.innerHTML = user.name.last;
+                phone.innerHTML = user.phone;
+                email.innerHTML = user.email;
                 addBooking.innerHTML = `
                     <form action="/guests/new" method="GET">
                         <input type="text" name="name.first" value="${user.name.first}" hidden>
@@ -84,11 +101,19 @@
                         <input type="text" name="phone" value="${user.phone}" hidden>
                         <input type="text" name="email" value="${user.email}" hidden>
                         <input class="button is-outlined is-black is-small" type="submit" value="Add Booking">
-                    </form>`
+                    </form>`;
+                editBtn.innerHTML = `
+                    <form action="/guests/guest-book/${user._id}/edit" method="GET">
+                        <input type="text" name="name.first" value="${user.name.first}" hidden>
+                        <input type="text" name="name.last" value="${user.name.last}" hidden>
+                        <input type="text" name="phone" value="${user.phone}" hidden>
+                        <input type="text" name="email" value="${user.email}" hidden>
+                        <input class="button is-outlined is-black is-small" type="submit" value="Edit">
+                    </form>`;
                 deleteBtn.innerHTML = `
                 <form action="/guests/guest-book/${user._id}?_method=DELETE" method="POST">
                     <input class="button is-outlined is-black is-small" type="submit" value="Delete">
-                </form>`
+                </form>`;
             })
         })
     })
