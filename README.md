@@ -16,9 +16,12 @@
 - MongoDB/Mongoose
 
 # Screenshot
+![Wire Frame](/screenshots/1.png)
+![Wire Frame](/screenshots/2.png)
+![Wire Frame](/screenshots/3.png)
 
 # Getting Started
-Click [Here](https://tableres-manager.herokuapp.com/guests)
+Launch App - Click [Here](https://tableres-manager.herokuapp.com/guests)
 
 # New Features
 - Filter by Date
