@@ -84,6 +84,7 @@ ul{
 .nav-link{
     color: white;
     font-size: 1rem;
+    background-color: transparent;
 }
 #nav-link-guest-book:hover, #nav-link-profile:hover{
     color: white;
