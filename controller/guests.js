@@ -3,6 +3,8 @@ const moment = require('moment');
 const Guest = require('../models/guest');
 const GuestData = require('../models/guest-seed');
 const GuestBook = require('../models/guest-book');
+const guest = require('../models/guest');
+const guestBook = require('../models/guest-book');
 
 ///// INITIALIZATION /////
 const router = require('express').Router();
@@ -19,9 +21,11 @@ router.get('/seed', async (req, res) => {
 
 ///// ROUTES/INDUCES /////
 
-// GLOBAL VARIABLES
+/// GLOBAL VARIABLES
 let today = moment().format('MMM Do YYYY');
 
+// WHEN THE PHONE # OF A GUEST IS UPDATED WE NEED THIS VARIABLE TO FIND CURRENT PHONE ON SERVER GUESTBOOK AND UPDATE THE DOCUMENT WITH NEW PHONE NUMBER.
+let phoneToEdit;
 
 /// INDEX
 router.get('/', (req, res) => {
@@ -113,6 +117,19 @@ router.put('/:id', (req, res) => {
     Guest.findByIdAndUpdate(req.params.id, req.body, () => {
         res.redirect(`/guests/filter-date-and-time?date=${req.body.date}&time=${req.body.time}`);
     });
+
+    // FIND OLD PHONE # AND UPDATE BODY 
+    if(phoneToEdit !== req.body.phone){
+        GuestBook.find({ phone: phoneToEdit }, (err, guestBook) => {
+            GuestBook.findByIdAndUpdate(guestBook[0]._id, req.body, () => {
+            });
+        });
+    }else{
+        GuestBook.find({ phone: phoneToEdit }, (err, guestBook) => {
+            GuestBook.findByIdAndUpdate(guestBook[0]._id, req.body, () => {
+            });
+        });
+    }
 });
 
 /// CREATE - POST
@@ -126,7 +143,6 @@ router.post('/', (req, res) => {
             GuestBook.create(req.body);
         }
     });
-    
     res.redirect('/guests');
 });
 
@@ -134,9 +150,14 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', (req, res) => {
     const id = req.params.id;
     Guest.findById(id , (err, guest) => {
+        // PHONE NUMBER USED TO FILTER GUESTBOOK AND UPDATE
+        phoneToEdit = guest.phone;
         res.render('edit.ejs', { id, guest, today });
     });
 });
+
+
+///// GUEST BOOK /////
 
 /// GUEST BOOK
 router.get('/guest-book', (req, res) => {
@@ -144,6 +165,7 @@ router.get('/guest-book', (req, res) => {
         res.render('guest-book.ejs', { guestBook, today });
     })
 })
+
 /// GUEST BOOK DELETE
 router.delete('/guest-book/:id', (req, res) => {
     GuestBook.findByIdAndDelete( req.params.id, req.body, () => {
@@ -151,5 +173,12 @@ router.delete('/guest-book/:id', (req, res) => {
     })
 })
 
+/// GUEST BOOK EDIT
+router.get('/guest-book/:id/edit', (req, res) => {
+    let id = req.params.id;
+    GuestBook.findById(id, (err, guest) => {
+        res.render('guest-book-edit.ejs', { id , guest, today });
+    });
+})
 
 module.exports = router;
