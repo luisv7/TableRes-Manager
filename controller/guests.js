@@ -176,6 +176,12 @@ router.delete('/guest-book/:id', (req, res) => {
     })
 })
 
+router.put('/guest-book/:id', (req, res) => {
+    GuestBook.findByIdAndUpdate(req.params.id, req.body, () => {
+        res.redirect(`/guests/guest-book`);
+    });
+})
+
 /// GUEST BOOK EDIT
 router.get('/guest-book/:id/edit', (req, res) => {
     let id = req.params.id;
