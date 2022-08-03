@@ -114,6 +114,8 @@ router.delete('/:id', (req, res) => {
 
 /// UPDATE - PUT
 router.put('/:id', (req, res) => {
+    let body = req.body;
+    
     Guest.findByIdAndUpdate(req.params.id, req.body, () => {
         res.redirect(`/guests/filter-date-and-time?date=${req.body.date}&time=${req.body.time}`);
     });
@@ -126,7 +128,7 @@ router.put('/:id', (req, res) => {
         });
     }else{
         GuestBook.find({ phone: phoneToEdit }, (err, guestBook) => {
-            GuestBook.findByIdAndUpdate(guestBook[0]._id, req.body, () => {
+            GuestBook.findByIdAndUpdate(guestBook[0]._id, body, () => {
             });
         });
     }
