@@ -1,1 +1,38 @@
-<h1><%= guest.name.first %></h1>
+<%- include('partials/header') %>
+<form action="/guests/guest-book/<%= id %>?_method=PUT" method="POST" class="form-new-guest">
+    <!-- FIRST NAME -->
+    <div class="field">
+        <label class="label" for="name.first">First Name</label>
+        <div class="control">
+            <input class="input" type="text" name="name.first" placeholder="First Name" value="<%= guest.name.first %>" required>
+        </div>
+    </div>
+    <!-- LAST NAME -->
+    <div class="field">
+        <label class="label" for="name.last">Last Name</label>
+        <div class="control">
+            <input class="input" type="text" name="name.last" placeholder="Last Name" value="<%= guest.name.last %>">
+        </div>
+    </div>
+    <!-- PHONE # -->
+    <div class="field">
+        <label class="label" for="phone">Phone</label>
+        <div class="control">
+            <input class="input" type="tel" name="phone" placeholder="123-456-7891" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<%= guest.phone %>" id="phone" required>
+        </div>
+    </div>
+    <!-- EMAIL -->
+    <div class="field">
+        <label class="label" for="email">Email</label>
+        <div class="control">
+            <input class="input" type="email" name="email" placeholder="example@email.com" value="<%= guest.email %>" id="email">
+        </div>
+    </div>
+    <!-- SUBMIT BUTTON -->
+    <div class="control">
+        <input class="button blue-btn" type="submit" value="Update Guest">
+        <a href="/guests/guest-book" class="button is-danger">Cancel</a>
+    </div>
+</form>
+
+<%- include('partials/footer') %>
