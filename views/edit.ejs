@@ -1,23 +1,32 @@
 <%- include('partials/header') %>
-<form action="/guests/<%= id %>?_method=PUT" method="POST">
+<form action="/guests/<%= id %>?_method=PUT" method="POST" class="form-new-guest">
     <!-- GROUP DATE / TIME -->
     <div class="field is-horizontal" id="date-time">
         <!-- DATE -->
-        <div class="field-label is-normal">
-            <label class="label" for="date">Date</label>
-        </div>
         <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label" for="date">Date</label>
+            </div>
             <div class="control">
-                <input class="input" type="date" name="date" value="<%= guest.date %>"  id="date" required>
+                <input class="input" type="date" name="date" value="<%= guest.date %>" id="date" required>
             </div>
         </div>
         <!-- TIME -->
-        <div class="field-label is-normal">
-            <label class="label is-normal" for="time">Time</label>
-        </div>
         <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label is-normal" for="time">Time</label>
+            </div>
             <div class="control">
                 <input class="input" type="time" name="time" value="<%= guest.time %>" id="time" required>
+            </div>
+        </div>
+        <!-- GUESTS -->
+        <div class="field-body">
+            <div class="field-label is-normal">
+                <label class="label" for="guests">People</label>
+            </div>
+            <div class="control">
+                <input class="input" type="number" name="guests" value="<%= guest.guests %>" id="guest" required>
             </div>
         </div>
     </div>
@@ -49,14 +58,7 @@
             <input class="input" type="email" name="email" placeholder="example@email.com" value="<%= guest.email %>" id="email">
         </div>
     </div>
-    <!-- GUESTS -->
-    <div class="field">
-        <label class="label" for="guests">Guests</label>
-        <div class="control">
-            <input class="input" type="number" name="guests" placeholder="4" value="<%= guest.guests %>" id="guest" required>
-        </div>
-    </div>
-    <!-- Table Number -->
+    <!-- TABLE NUMBER -->
     <div class="field">
         <label class="label" for="table">Table</label>
         <div class="control">
@@ -72,8 +74,8 @@
     </div>
     <!-- SUBMIT BUTTON -->
     <div class="control">
-        <input class="button is-outlined is-primary" type="submit" value="Update Booking">
-        <a href="/guests/view-all" class="button is-outlined is-danger">Cancel</a>
+        <input class="button blue-btn" type="submit" value="Update Booking">
+        <a href="/guests/view-all" class="button is-danger">Cancel</a>
     </div>
 </form>
 
