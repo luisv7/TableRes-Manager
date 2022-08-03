@@ -22,7 +22,7 @@ router.get('/seed', async (req, res) => {
 ///// ROUTES/INDUCES /////
 
 /// GLOBAL VARIABLES
-let today = moment().format('MMM Do YYYY');
+let today = moment.utc().local().format('MMM Do YYYY');
 
 // WHEN THE PHONE # OF A GUEST IS UPDATED WE NEED THIS VARIABLE TO FIND CURRENT PHONE ON SERVER GUESTBOOK AND UPDATE THE DOCUMENT WITH NEW PHONE NUMBER.
 let phoneToEdit;
@@ -115,7 +115,7 @@ router.delete('/:id', (req, res) => {
 /// UPDATE - PUT
 router.put('/:id', (req, res) => {
     let body = req.body;
-    
+
     Guest.findByIdAndUpdate(req.params.id, req.body, () => {
         res.redirect(`/guests/filter-date-and-time?date=${req.body.date}&time=${req.body.time}`);
     });
