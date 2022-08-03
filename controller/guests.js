@@ -22,7 +22,8 @@ router.get('/seed', async (req, res) => {
 ///// ROUTES/INDUCES /////
 
 /// GLOBAL VARIABLES
-let today = moment.utc().local().format('MMM Do YYYY');
+let UTC = moment.utc()
+let today = moment(UTC).local().format('MMM Do YYYY');
 
 // WHEN THE PHONE # OF A GUEST IS UPDATED WE NEED THIS VARIABLE TO FIND CURRENT PHONE ON SERVER GUESTBOOK AND UPDATE THE DOCUMENT WITH NEW PHONE NUMBER.
 let phoneToEdit;
