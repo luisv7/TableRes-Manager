@@ -139,10 +139,10 @@ router.put('/:id', (req, res) => {
         });
     }else{
         GuestBook.find({ phone: phoneToEdit }, (err, guestBook) => {
-            if(guestBook !== ''){
+            if (guestBook != ""){
                 GuestBook.findByIdAndUpdate(guestBook[0]._id, body, () => {
                 });
-            }
+            }else {}
         });
     }
 });
