@@ -16,9 +16,9 @@
 - MongoDB/Mongoose
 
 # Screenshot
-![Wire Frame](/screenshots/1.png)
-![Wire Frame](/screenshots/2.png)
-![Wire Frame](/screenshots/3.png)
+![Wire Frame](/screenshots/1.jpg)
+![Wire Frame](/screenshots/2.jpg)
+![Wire Frame](/screenshots/3.jpg)
 
 # Getting Started
 Launch App - Click [Here](https://tableres-manager.herokuapp.com/guests)
