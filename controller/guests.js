@@ -3,17 +3,27 @@ const moment = require('moment');
 const Guest = require('../models/guest');
 const GuestData = require('../models/guest-seed');
 const GuestBook = require('../models/guest-book');
-const guest = require('../models/guest');
-const guestBook = require('../models/guest-book');
+const GuestBookSeed = require('../models/guest-book-seed');
 
 ///// INITIALIZATION /////
 const router = require('express').Router();
 
+// SEED DATA
 router.get('/seed', async (req, res) => {
     try{
         await Guest.deleteMany({});
         await Guest.create(GuestData);
         res.redirect('/guests');
+    }catch (err) {
+        res.send(err.message);
+    }
+}); 
+
+router.get('/guest-book/seed', async (req, res) => {
+    try{
+        await GuestBook.deleteMany({});
+        await GuestBook.create(GuestBookSeed);
+        res.redirect('/guests/guest-book');
     }catch (err) {
         res.send(err.message);
     }
@@ -129,8 +139,10 @@ router.put('/:id', (req, res) => {
         });
     }else{
         GuestBook.find({ phone: phoneToEdit }, (err, guestBook) => {
-            GuestBook.findByIdAndUpdate(guestBook[0]._id, body, () => {
-            });
+            if(guestBook !== ''){
+                GuestBook.findByIdAndUpdate(guestBook[0]._id, body, () => {
+                });
+            }
         });
     }
 });
@@ -146,7 +158,7 @@ router.post('/', (req, res) => {
             GuestBook.create(req.body);
         }
     });
-    res.redirect('/guests');
+    res.redirect(`/guests/filter-date-and-time?date=${req.body.date}&time=${req.body.time}`);
 });
 
 /// EDIT

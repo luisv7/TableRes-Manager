@@ -3,6 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#wrapper {
+flex: 1;
+}
+
 .nav-date{
     font-size: 1.3rem;
     color: white;
@@ -49,18 +59,7 @@ h2{
     color: white;
     border-style: none;
 }
-.btn-card-footer{
-    background-color: white;
-    border-style: none;
-    color: rgb(24, 116, 152);
-    font-size: 1rem;
-}
-.btn-card-footer:hover{
-    background-color: white;
-    border-style: none;
-    color: rgb(0, 0, 0);
-    font-size: 1rem;
-}
+
 
 /***** NAVIGATION ******/
 nav{
@@ -173,6 +172,7 @@ ul{
 .icon-guests-table{
     font-size: .90rem;
     font-weight: 800;
+    color: rgb(0, 52, 94);
 }
 
 .icon-del{
@@ -235,4 +235,12 @@ ion-icon{
 .table{
 min-width: 600px;
 margin: 0 auto;
+}
+
+.footer{
+    display: flex;
+    padding: 2rem 1rem 3rem;
+    background-color: rgb(244, 244, 244);
+    justify-content: center;
+    margin-top: 1rem;
 }
